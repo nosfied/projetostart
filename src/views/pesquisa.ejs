@@ -1,0 +1,2072 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+   
+<div class="container">
+  <main>
+    <section class="py-2 text-center secao">
+      <div style="margin-top: 50px;" class="py-4 text-center">
+        <h2>PESQUISA - CERTIDÕES</h2>
+      </div> 
+      <form>
+        <input type="hidden" id="token" name="_csrf" value="<%= csrfToken %>">
+        <div class="py-2 text-center">
+          <h4>Parâmetros para Busca</h4>
+        
+          <div class="row g-3" style="display: flex;">
+            
+            <div class="row g-3" style="display: flex;">
+              
+              <div class="col-sm-6 divCampos">
+                <label for="firstName" class="form-label">Nome completo incluindo acentos</label>
+                <input type="text" id="pesquisaNome" name="pesquisaNome" class="form-control form-control-sm" required>                
+              </div>
+  
+              <div class="col-sm-3 divCampos">
+                <label for="cpf" class="form-label">CPF (Apenas Números)</label>
+                <input type="text" id="pesquisaCpf" name="pesquisaCpf" class="form-control form-control-sm" required>                
+              </div>
+
+              <div class="col-sm-3 divCampos">
+                <label for="Rg" class="form-label">RG (Apenas Números)</label>
+                <input type="text" id="pesquisaRg" name="pesquisaRg" class="form-control form-control-sm" required>                
+              </div>
+
+              <div class="col-sm-2 divCampos conjuntoForm1">
+                <label for="orgaoExp" class="form-label">Expedidor</label>
+                <input type="text" id="orgaoExp" name="orgaoExp" class="form-control form-control-sm" required>                
+              </div>
+              
+              <div class="col-sm-1 divCampos conjuntoForm2">
+                <label class="conjuntoForm2">-</label>                
+              </div>
+
+              <div class="col-sm-1 divCampos conjuntoForm3">
+                <select id="ufRg" class="form-select form-select-sm conjuntoForm" aria-label=".form-select-sm example">
+                  <option value="UF">UF</option><option value="RS">RS</option><option value="SC">SC</option><option value="PR">PR</option><option value="AC">AC</option><option value="AL">AL</option><option value="AM">AM</option><option value="AP">AP</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MG">MG</option><option value="MS">MS</option><option value="MT">MT</option><option value="PA">PA</option><option value="PB">PB</option><option value="PE">PE</option><option value="PI">PI</option><option value="PR">PR</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RO">RO</option><option value="RR">RR</option><option value="RS">RS</option><option value="SC">SC</option><option value="SE">SE</option><option value="SP">SP</option><option value="TO">TO</option>                                  
+                </select>
+              </div>             
+
+              <div class="col-sm-3 divCampos">
+                <label for="dtNascimento" class="form-label">Nascimento</label>
+                <input type="date" id="dtNascimento" name="dtNascimento" class="form-control form-control-sm">                
+              </div>              
+              
+              <div class="col-sm-2">
+                <div class="form-check">
+                  <input class="form-check-input generoPesq" value="masculino" type="radio" name="generoPesq" id="generoPesq">
+                  <label class="form-check-label" for="masculino">
+                    Masculino
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input generoPesq" value="feminino" type="radio" name="generoPesq" id="generoPesq">
+                  <label class="form-check-label" for="feminino">
+                    Feminino
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-4 divCampos">
+                <label for="Email" class="form-label">Email p/ receber Certidões</label>
+                <input type="email" id="pesquisaEmail" name="pesquisaEmail" class="form-control form-control-sm" required>                
+              </div>
+  
+              <div class="col-sm-6 divCampos">
+                <label for="nomeMae" class="form-label">Nome da mãe</label>
+                <input type="text" id="nomeMae" name="nomeMae" class="form-control form-control-sm" required>                
+              </div>
+  
+              <div class="col-sm-6 divCampos">
+                <label for="nomePai" class="form-label">Nome do pai</label>
+                <input type="text" id="nomePai" name="nomePai" class="form-control form-control-sm">                
+              </div>
+
+              <div class="col-sm-6 divCampos">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" id="endereco" name="endereco" class="form-control form-control-sm">                
+              </div>
+
+              <div class="col-sm-3 divCampos">
+                <select id="estadoCivil" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option selected>Estado Civil</option>
+                  <option value="Casado">Casado</option>
+                  <option value="Companheiro">Companheiro</option>
+                  <option value="Desquitado">Desquitado</option>
+                  <option value="Divorciado">Divorciado</option>
+                  <option value="Outros">Outros</option>
+                  <option value="Sep Consensualmente">Sep Consensualmente</option>
+                  <option value="Sep Judicialmente">Sep Judicialmente</option>
+                  <option value="Separado">Separado</option>
+                  <option value="Solteiro">Solteiro</option>
+                  <option value="União Estável">União Estável</option>
+                  <option value="Viúvo">Viúvo</option>                                                    
+                </select>
+              </div>
+
+              <div class="col-sm-3 divCampos">
+                <label for="naturalidade" class="form-label">Naturalidade</label>
+                <input type="text" id="naturalidade" name="naturalidade" class="form-control form-control-sm">                
+              </div>
+              
+            </div>
+            
+            <table class="table">              
+              <tbody>
+                
+                <!-- INSTRUÇÕES -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoesaviso" class="btn btn-outline-secondary btnList" type="button" id="btaviso">LEITURA OBRIGATÓRIA para utilização</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoesaviso">                  
+                  <td>                    
+                    <table class="table">                      
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>Atenção</strong></p>
+                          </td>                           
+                          <td>                           
+                              <p>1 - Não há garantia de emissão da certidão, por tanto é, de total <strong>responsabilidade do usuário</strong>, a conferência
+                                do conteúdo no arquivo.</p>
+                              <p>2 - A ferramenta depende do comportamento de outros sitios, sendo necessário,
+                                em alguns casos, repetir a busca.</p>
+                              <p>3 - Após 5 tentativas com intervalos de 5 minutos entre elas, siga o link na mensagem de erro para uma
+                                tentativa manual, a fim de evitar o bloqueio de nossa aplicação.</p>
+                                <p>CONTATO DO DESENVOLVEDOR PARA SOLICITAÇÕES: (11)99764 4346 - WhatsApp</p>                               
+                          </td>
+                          
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxaviso"></table></td>                                                      
+                        </tr>                                                
+                      </tbody>
+                    </table>                  
+                  </td>                  
+                </tr>
+
+                <!-- TRF1 -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestrf1" class="btn btn-outline-secondary btnList" type="button" id="bttrf1">TRF 1</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestrf1">                  
+                  <td>                    
+                    <table class="table">                      
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TRF 1</strong></p>
+                          </td>                           
+                          <td class="linhaDeOpcoes">                           
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtrf1" select="0" type="checkbox" value="criminal" id="trf1Criminal" name="trf1">
+                                <label class="form-check-label itemOpcao" for="trf1Criminal">
+                                  Certidão Criminal 1º Grau
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtrf1" select="0" type="checkbox" value="civel" id="trf1Civel" name="trf1">
+                                <label class="form-check-label itemOpcao" for="trf1Civel">
+                                  Certidão Cível 1º e 2º Grau
+                                </label>
+                              </div>                               -->
+                          </td>
+                          <td class="conjBtoes" scope="row">                            
+                            <button id="btFormTrf1" rota="/pesquisa/trf1" comarca="comarcaTrf1" link="linkTrf1" link2="linkTrf1-2" opcoes="boxtrf1" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkTrf1" value="https://sistemas.trf1.jus.br/certidao/#/solicitacao">
+                            <input type="hidden" id="linkTrf1-2">
+                            <input type="hidden" id="comarcaTrf1">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtrf1"></table></td>                                                      
+                        </tr>                                                
+                      </tbody>
+                    </table>                  
+                  </td>                  
+                </tr>
+                
+                <!-- TRF2 -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestrf2" class="btn btn-outline-secondary btnList" type="button" id="bttrf2">TRF 2</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestrf2">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TRF 2</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtrf2" select="0" type="checkbox" value="criminal" id="trf2Criminal" name="trf2">
+                                <label class="form-check-label itemOpcao" for="trf2Criminal">
+                                  Certidão Criminal 1º Grau
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtrf2" select="0" type="checkbox" value="civel" id="trf2Civel" name="trf2">
+                                <label class="form-check-label itemOpcao" for="trf2Civel">
+                                  Certidão Cível 1º e 2º Grau
+                                </label>
+                              </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">                            
+                            <button id="btFormTrf2" rota="/pesquisa/trf2" comarca="comarcaTrf2" link="linkTrf2" link2="linkTrf2-2" opcoes="boxtrf2" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkTrf2" value="https://certidoes.trf2.jus.br/certidoes/#/principal/solicitar">
+                            <input type="hidden" id="linkTrf2-2">
+                            <input type="hidden" id="comarcaTrf2">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtrf2"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TRF3 -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestrf3" class="btn btn-outline-secondary btnList" type="button" id="bttrf3">TRF 3</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestrf3">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TRF 3</strong></p>
+                          </td>
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf3" select="0" type="checkbox" value="criminal" id="trf3Criminal" name="trf3">
+                              <label class="form-check-label itemOpcao" for="trf3Criminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf3" select="0" type="checkbox" value="civel" id="trf3Civel" name="trf3">
+                              <label class="form-check-label itemOpcao" for="trf3Civel">
+                                Certidão Cível 1º e 2º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormTrf3" rota="/pesquisa/trf3" comarca="comarcaTrf3" link="linkTrf3" link2="linkTrf3-2" opcoes="boxtrf3" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkTrf3" value="https://web.trf3.jus.br/certidao-regional/">
+                            <input type="hidden" id="linkTrf3-2">
+                            <input type="hidden" id="comarcaTrf3">
+                          </td>                          
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtrf3"></table></td>                                                      
+                        </tr>                       
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TRF4 -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestrf4" class="btn btn-outline-secondary btnList" type="button" id="bttrf4">TRF 4</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestrf4">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TRF 4</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf4" select="0" type="checkbox" value="criminal" id="trf4Criminal" name="trf4">
+                              <label class="form-check-label itemOpcao" for="trf4Criminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf4" select="0" type="checkbox" value="civel" id="trf4Civel" name="trf4">
+                              <label class="form-check-label itemOpcao" for="trf4Civel">
+                                Certidão Cível 1º e 2º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormTrf4" rota="/pesquisa/trf4" comarca="comarcaTrf4" link="linkTrf4" link2="linkTrf4-2" opcoes="boxtrf4" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkTrf4" value="https://www2.trf4.jus.br/trf4/processos/certidao/index.php">
+                            <input type="hidden" id="linkTrf4-2">
+                            <input type="hidden" id="comarcaTrf4">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtrf4"></table></td>                                                      
+                        </tr>                        
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TRF5 -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestrf5" class="btn btn-outline-secondary btnList" type="button" id="bttrf5">TRF 5</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestrf5">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TRF 5</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf5" select="0" type="checkbox" value="criminal" id="trf5Criminal" name="trf5">
+                              <label class="form-check-label itemOpcao" for="trf5Criminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtrf5" select="0" type="checkbox" value="civel" id="trf5Civel" name="trf5">
+                              <label class="form-check-label itemOpcao" for="trf5Civel">
+                                Certidão Cível 1º e 2º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormTrf5" rota="/pesquisa/trf5" comarca="comarcaTrf5" link="linkTrf5" link2="linkTrf5-2" opcoes="boxtrf5" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkTrf5" value="https://certidoes.trf5.jus.br/certidoes2022/">
+                            <input type="hidden" id="linkTrf5-2">
+                            <input type="hidden" id="comarcaTrf5">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtrf5"></table></td>                                                      
+                        </tr>                          
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJMS -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjms" class="btn btn-outline-secondary btnList" type="button" id="bttjms">TJ MATO GROSSO DO SUL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjms">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ MS</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            
+                            <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 1° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjms" select="0" type="checkbox" value="criminal1" id="tjmsCriminal1" name="tjms">
+                                <label class="form-check-label itemOpcao" for="tjmsCriminal1">
+                                  Criminal
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjms" select="0" type="checkbox" value="civel1" id="tjmsCivel1" name="tjms">
+                                <label class="form-check-label itemOpcao" for="tjmsCivel1">
+                                  Ação Cível
+                                </label>
+                              </div> -->
+                              <div class="opcoesBuscas">
+                                <select id="comarcaTjms" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                  <option selected>Comarca</option>
+                                  <option value="Água Clara">Água Clara</option>
+                                  <option value="Amambai">Amambai</option>
+                                  <option value="Anastácio">Anastácio</option>
+                                  <option value="Anaurilândia">Anaurilândia</option>
+                                  <option value="Angélica">Angélica</option>
+                                  <option value="Aparecida do Taboado">Aparecida do Taboado</option>
+                                  <option value="Aquidauana">Aquidauana</option>
+                                  <option value="Bandeirantes">Bandeirantes</option>
+                                  <option value="Bataguassu">Bataguassu</option>
+                                  <option value="Batayporã">Batayporã</option>
+                                  <option value="Bela Vista">Bela Vista</option>
+                                  <option value="Bonito">Bonito</option>
+                                  <option value="Brasilândia">Brasilândia</option>
+                                  <option value="Caarapó">Caarapó</option>
+                                  <option value="Camapuã">Camapuã</option>
+                                  <option value="Campo Grande">Campo Grande</option>
+                                  <option value="Cassilândia">Cassilândia</option>
+                                  <option value="Chapadão do Sul">Chapadão do Sul</option>
+                                  <option value="Coronel Sapucaia">Coronel Sapucaia</option>
+                                  <option value="Corumbá">Corumbá</option>
+                                  <option value="Costa Rica">Costa Rica</option>
+                                  <option value="Coxim">Coxim</option>
+                                  <option value="Deodápolis">Deodápolis</option>
+                                  <option value="Dois Irmãos do Buriti">Dois Irmãos do Buriti</option>
+                                  <option value="Dourados">Dourados</option>
+                                  <option value="Eldorado">Eldorado</option>
+                                  <option value="Fátima do Sul">Fátima do Sul</option>
+                                  <option value="Glória de Dourados">Glória de Dourados</option>
+                                  <option value="Iguatemi">Iguatemi</option>
+                                  <option value="Inocência">Inocência</option>
+                                  <option value="Itaporã">Itaporã</option>
+                                  <option value="Itaquiraí">Itaquiraí</option>
+                                  <option value="Ivinhema">Ivinhema</option>
+                                  <option value="Jardim">Jardim</option>
+                                  <option value="Justiça Itinerante do Estado de MS">Justiça Itinerante do Estado de MS</option>
+                                  <option value="Maracaju">Maracaju</option>
+                                  <option value="Miranda">Miranda</option>
+                                  <option value="Mundo Novo">Mundo Novo</option>
+                                  <option value="Naviraí">Naviraí</option>
+                                  <option value="Nioaqui">Nioaqui</option>
+                                  <option value="Nova Alvorada do Sul">Nova Alvorada do Sul</option>
+                                  <option value="Nova Andradina">Nova Andradina</option>
+                                  <option value="Paranaíba">Paranaíba</option>
+                                  <option value="Pedro Gomes">Pedro Gomes</option>
+                                  <option value="Ponta Porã">Ponta Porã</option>
+                                  <option value="Porto Murtinho">Porto Murtinho</option>
+                                  <option value="Ribas do Rio Pardo">Ribas do Rio Pardo</option>
+                                  <option value="Rio Brilhante">Rio Brilhante</option>
+                                  <option value="Rio Negro">Rio Negro</option>
+                                  <option value="Rio Verde de Mato Grosso">Rio Verde de Mato Grosso</option>
+                                  <option value="São Gabriel do Oeste">São Gabriel do Oeste</option>
+                                  <option value="Sete Quedas">Sete Quedas</option>
+                                  <option value="Sidrolândia">Sidrolândia</option>
+                                  <option value="Sonora">Sonora</option>
+                                  <option value="Terenos">Terenos</option>
+                                  <option value="Três Lagoas">Três Lagoas</option>                                  
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 2° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjms" select="0" type="checkbox" value="criminal2" id="tjmsCriminal2" name="tjms">
+                                <label class="form-check-label itemOpcao" for="tjmsCriminal2">
+                                  Criminal
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjms" select="0" type="checkbox" value="civel2" id="tjmsCivel2" name="tjms">
+                                <label class="form-check-label itemOpcao" for="tjmsCivel2">
+                                  Ação Cível
+                                </label>
+                              </div> -->
+                            </div>
+
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjms" rota="/pesquisa/tjms" comarca="comarcaTjms" link="linktjms" link2="linktjms2" opcoes="boxtjms" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjms" value="https://esaj.tjms.jus.br/sco/abrirCadastro.do">
+                            <input type="hidden" id="linktjms2" value="https://esaj.tjms.jus.br/scosg/abrirCadastro.do">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjms"></table></td>                                                      
+                        </tr> 
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJDFT -->
+                <!-- <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjdf" class="btn btn-outline-secondary btnList" type="button" id="bttjdf">TJ DISTRITO FEDERAL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjdf">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ DF</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjdf" select="0" type="checkbox" value="criminal" id="tjdfCriminal" name="tjdf">
+                              <label class="form-check-label itemOpcao" for="tjdfCriminal">
+                                Certidão Criminal 1º e 2º Grau
+                              </label>
+                            </div>
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjdf" select="0" type="checkbox" value="civel" id="tjdfCivel" name="tjdf">
+                              <label class="form-check-label itemOpcao" for="tjdfCivel">
+                                Certidão Cível 1º e 2º Grau
+                              </label>
+                            </div>
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjdf" rota="/pesquisa/tjdf" comarca="comarcaTjdf" link="linktjdf" link2="linktjdf2" opcoes="boxtjdf" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjdf" value="https://cnc.tjdft.jus.br/solicitacao-externa">
+                            <input type="hidden" id="linktjdf2">
+                            <input type="hidden" id="comarcaTjdf">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjdf"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr> -->
+
+                <!-- TJSP -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjsp" class="btn btn-outline-secondary btnList" type="button" id="bttjsp">TJ SÃO PAULO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjsp">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ SP</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjsp" select="0" type="checkbox" value="criminal" id="tjspCriminal" name="tjsp">
+                              <label class="form-check-label itemOpcao" for="tjspCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjsp" select="0" type="checkbox" value="civel" id="tjspCivel" name="tjsp">
+                              <label class="form-check-label itemOpcao" for="tjspCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjsp" rota="/pesquisa/tjsp" comarca="comarcaTjsp" link="linktjsp" link2="linktjsp2" opcoes="boxtjsp" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjsp" value="https://esaj.tjsp.jus.br/sco/abrirCadastro.do">
+                            <input type="hidden" id="linktjsp2">
+                            <input type="hidden" id="comarcaTjsp">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjsp"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJSC -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjsc" class="btn btn-outline-secondary btnList" type="button" id="bttjsc">TJ SANTA CATARINA</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjsc">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ SC</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            
+                            <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 1° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjsc" select="0" type="checkbox" value="criminal1" id="tjscCriminal1" name="tjsc">
+                                <label class="form-check-label itemOpcao" for="tjscCriminal1">
+                                  Criminal
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjsc" select="0" type="checkbox" value="civel1" id="tjscCivel1" name="tjsc">
+                                <label class="form-check-label itemOpcao" for="tjscCivel1">
+                                  Ação Cível
+                                </label>
+                              </div>                               -->
+                            </div>
+
+                            <!-- <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 2° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjsc" select="0" type="checkbox" value="criminal2" id="tjscCriminal2" name="tjsc">
+                                <label class="form-check-label itemOpcao" for="tjscCriminal2">
+                                  Ação Criminal
+                                </label>
+                              </div>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjsc" select="0" type="checkbox" value="civel2" id="tjscCivel2" name="tjsc">
+                                <label class="form-check-label itemOpcao" for="tjscCivel2">
+                                  Ação Cível
+                                </label>
+                              </div>
+                            </div> -->
+
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjsc" rota="/pesquisa/tjsc" comarca="comarcaTjsc" link="linktjsc" link2="linktjsc2" opcoes="boxtjsc" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjsc" value="https://certidoes.tjsc.jus.br/">
+                            <input type="hidden" id="linktjsc2">
+                            <input type="hidden" id="comarcaTjsc">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjsc"></table></td>                                                      
+                        </tr> 
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJRS -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjrs" class="btn btn-outline-secondary btnList" type="button" id="bttjrs">TJ RIO GRANDE DO SUL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjrs">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ RS</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrs" select="0" type="checkbox" value="criminal" id="tjrsCriminal" name="tjrs">
+                              <label class="form-check-label itemOpcao" for="tjrsCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrs" select="0" type="checkbox" value="civel" id="tjrsCivel" name="tjrs">
+                              <label class="form-check-label itemOpcao" for="tjrsCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjrs" rota="/pesquisa/tjrs" comarca="comarcaTjrs" link="linktjrs" link2="linktjrs2" opcoes="boxtjrs" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjrs" value="https://www.tjrs.jus.br/novo/processos-e-servicos/servicos-processuais/emissao-de-antecedentes-e-certidoes//">
+                            <input type="hidden" id="linktjrs2">
+                            <input type="hidden" id="comarcaTjrs">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjrs"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJBA -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjba" class="btn btn-outline-secondary btnList" type="button" id="bttjba">TJ BAHIA</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjba">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ BA</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjba" select="0" type="checkbox" value="criminal" id="tjbaCriminal" name="tjba">
+                              <label class="form-check-label itemOpcao" for="tjbaCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjba" select="0" type="checkbox" value="civel" id="tjbaCivel" name="tjba">
+                              <label class="form-check-label itemOpcao" for="tjbaCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjrs" rota="/pesquisa/tjba" comarca="comarcaTjba" link="linktjba" link2="linktjba2" opcoes="boxtjba" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjba" value="http://www5.tjba.jus.br/portal/certidoes/">
+                            <input type="hidden" id="linktjba2">
+                            <input type="hidden" id="comarcaTjba">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjba"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJPI -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjpi" class="btn btn-outline-secondary btnList" type="button" id="bttjpi">TJ PIAUÍ</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjpi">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ PI</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpi" select="0" type="checkbox" value="criminal1" id="tjpiCriminal1" name="tjpi">
+                              <label class="form-check-label itemOpcao" for="tjpiCriminal1">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpi" select="0" type="checkbox" value="criminal2" id="tjpiCriminal2" name="tjpi">
+                              <label class="form-check-label itemOpcao" for="tjpiCriminal2">
+                                Certidão Criminal 2º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjpi" rota="/pesquisa/tjpi" comarca="comarcaTjpi" link="linktjpi" link2="linktjpi2" opcoes="boxtjpi" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjpi" value="https://www.tjpi.jus.br/themisconsulta/certidao">
+                            <input type="hidden" id="linktjpi2">
+                            <input type="hidden" id="comarcaTjpi">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4">
+                            <h6>Campos complementares obrigatórios</h6>
+                            <div class="row g-3" style="display: flex; padding-left: 3%;">
+
+                              <div class="col-sm-3 divCampos">
+                                <select id="estadoCivilTjPI" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                  <option value="">Estado Civil</option>
+                                  <option value="Casado(a)">Casado(a)</option>                                
+                                  <option value="Concubino(a)">Concubino(a)</option>                                
+                                  <option value="Divorciado(a)">Divorciado(a)</option>                                
+                                  <option value="Separado">Separado</option>                                
+                                  <option value="Separado(a) judicialmente">Separado(a) judicialmente</option>                                
+                                  <option value="Solteiro(a)">Solteiro(a)</option>                                
+                                  <option value="União Estável">União Estável</option>                                
+                                  <option value="Viúvo(a)">Viúvo(a)</option>                                                    
+                                </select>
+                              </div>                              
+
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjpi"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJAL -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjal" class="btn btn-outline-secondary btnList" type="button" id="bttjal">TJ ALAGOAS</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjal">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ AL</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjal" select="0" type="checkbox" value="criminal" id="tjalCriminal" name="tjal">
+                              <label class="form-check-label itemOpcao" for="tjalCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjal" select="0" type="checkbox" value="civel" id="tjalCivel" name="tjal">
+                              <label class="form-check-label itemOpcao" for="tjalCivel">
+                                Certidão Criminal 2º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjal" rota="/pesquisa/tjal" comarca="comarcaTjal" link="linktjal" link2="linktjal2" opcoes="boxtjal" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjal" value="https://www2.tjal.jus.br/sco/abrirCadastro.do">
+                            <input type="hidden" id="linktjal2">
+                            <input type="hidden" id="comarcaTjal">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjal"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJAP -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjap" class="btn btn-outline-secondary btnList" type="button" id="bttjap">TJ AMAPÁ</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjap">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ AP</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjap" select="0" type="checkbox" value="criminal1" id="tjapCriminal" name="tjap">
+                              <label class="form-check-label itemOpcao" for="tjapCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjap" select="0" type="checkbox" value="civel1" id="tjapCivel" name="tjap">
+                              <label class="form-check-label itemOpcao" for="tjapCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjap" rota="/pesquisa/tjap" comarca="comarcaTjap" link="linktjap" link2="linktjap2" opcoes="boxtjap" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjap" value="http://tucujuris.tjap.jus.br/tucujuris/pages/certidao-publica/certidao-publica.html">
+                            <input type="hidden" id="linktjap2">
+                            <input type="hidden" id="comarcaTjap">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjap"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJCE -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjce" class="btn btn-outline-secondary btnList" type="button" id="bttjce">TJ CEARÁ</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjce">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ CE</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            
+                            <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 1° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjce" select="0" type="checkbox" value="criminal1" id="tjceCriminal1" name="tjce">
+                                <label class="form-check-label itemOpcao" for="tjceCriminal1">
+                                  Criminal
+                                </label>
+                              </div>
+                              <!-- <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjce" select="0" type="checkbox" value="civel1" id="tjceCivel1" name="tjce">
+                                <label class="form-check-label itemOpcao" for="tjceCivel1">
+                                  Ação Cível
+                                </label>
+                              </div> -->
+                              <div class="opcoesBuscas">
+                                <select id="comarcaTjce" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                  <option selected>Comarca</option>
+                                  <option value="FORTALEZA">FORTALEZA</option>
+                                  <option value="ACARAPE">ACARAPE</option>
+                                  <option value="ACARAÚ">ACARAÚ</option>
+                                  <option value="ACOPIARA">ACOPIARA</option>
+                                  <option value="AIUABA">AIUABA</option>
+                                  <option value="ALTO SANTO">ALTO SANTO</option>
+                                  <option value="AMONTADA">AMONTADA</option>
+                                  <option value="ANTONINA DO NORTE">ANTONINA DO NORTE</option>
+                                  <option value="AQUIRAZ">AQUIRAZ</option>
+                                  <option value="ARACATI">ARACATI</option>
+                                  <option value="ARACOIABA">ARACOIABA</option>
+                                  <option value="ARARENDA">ARARENDA</option>
+                                  <option value="ARARIPE">ARARIPE</option>
+                                  <option value="ARATUBA">ARATUBA</option>
+                                  <option value="ASSARÉ">ASSARÉ</option>
+                                  <option value="AURORA">AURORA</option>
+                                  <option value="BAIXIO">BAIXIO</option>
+                                  <option value="BARBALHA">BARBALHA</option>
+                                  <option value="BARREIRA">BARREIRA</option>
+                                  <option value="BARRO">BARRO</option>
+                                  <option value="BARROQUINHA">BARROQUINHA</option>
+                                  <option value="BATURITÉ">BATURITÉ</option>
+                                  <option value="BEBERIBE">BEBERIBE</option>
+                                  <option value="BELA CRUZ">BELA CRUZ</option>
+                                  <option value="BOA VIAGEM">BOA VIAGEM</option>
+                                  <option value="BREJO SANTO">BREJO SANTO</option>
+                                  <option value="CAMOCIM">CAMOCIM</option>
+                                  <option value="CAMPOS SALES">CAMPOS SALES</option>
+                                  <option value="CANINDÉ">CANINDÉ</option>
+                                  <option value="CAPISTRANO">CAPISTRANO</option>
+                                  <option value="CARIDADE">CARIDADE</option>
+                                  <option value="CARIRÉ">CARIRÉ</option>
+                                  <option value="CARIRIAÇU">CARIRIAÇU</option>
+                                  <option value="CARIÚS">CARIÚS</option>
+                                  <option value="CARNAUBAL">CARNAUBAL</option>
+                                  <option value="CASCAVEL">CASCAVEL</option>
+                                  <option value="CATARINA">CATARINA</option>
+                                  <option value="CAUCAIA">CAUCAIA</option>
+                                  <option value="CEDRO">CEDRO</option>
+                                  <option value="CHAVAL">CHAVAL</option>
+                                  <option value="CHOROZINHO">CHOROZINHO</option>
+                                  <option value="COREAÚ">COREAÚ</option>
+                                  <option value="CRATEÚS">CRATEÚS</option>
+                                  <option value="CRATO">CRATO</option>
+                                  <option value="CROATÁ">CROATÁ</option>
+                                  <option value="CRUZ">CRUZ</option>
+                                  <option value="EUSEBIO">EUSEBIO</option>
+                                  <option value="FARIAS BRITO">FARIAS BRITO</option>
+                                  <option value="FORQUILHA">FORQUILHA</option>
+                                  <option value="FORTIM">FORTIM</option>
+                                  <option value="FRECHEIRINHA">FRECHEIRINHA</option>
+                                  <option value="GRAÇA">GRAÇA</option>
+                                  <option value="GRANJA">GRANJA</option>
+                                  <option value="GROAIRAS">GROAIRAS</option>
+                                  <option value="GUAIUBA">GUAIUBA</option>
+                                  <option value="GUARACIABA DO NORTE">GUARACIABA DO NORTE</option>
+                                  <option value="HIDROLÂNDIA">HIDROLÂNDIA</option>
+                                  <option value="HORIZONTE">HORIZONTE</option>
+                                  <option value="IBIAPINA">IBIAPINA</option>
+                                  <option value="IBICUITINGA">IBICUITINGA</option>
+                                  <option value="ICAPUÍ">ICAPUÍ</option>
+                                  <option value="ICÓ">ICÓ</option>
+                                  <option value="IGUATU">IGUATU</option>
+                                  <option value="INDEPENDÊNCIA">INDEPENDÊNCIA</option>
+                                  <option value="IPAPORANGA">IPAPORANGA</option>
+                                  <option value="IPAUMIRIM">IPAUMIRIM</option>
+                                  <option value="IPU">IPU</option>
+                                  <option value="IPUEIRAS">IPUEIRAS</option>
+                                  <option value="IRACEMA">IRACEMA</option>
+                                  <option value="IRAUÇUBA">IRAUÇUBA</option>
+                                  <option value="ITAITINGA">ITAITINGA</option>
+                                  <option value="ITAPAJÉ">ITAPAJÉ</option>
+                                  <option value="ITAPIPOCA">ITAPIPOCA</option>
+                                  <option value="ITAPIÚNA">ITAPIÚNA</option>
+                                  <option value="ITAREMA">ITAREMA</option>
+                                  <option value="ITATIRA">ITATIRA</option>
+                                  <option value="JAGUARETAMA">JAGUARETAMA</option>
+                                  <option value="JAGUARIBE">JAGUARIBE</option>
+                                  <option value="JAGUARUANA">JAGUARUANA</option>
+                                  <option value="JARDIM">JARDIM</option>
+                                  <option value="JATI">JATI</option>
+                                  <option value="JIJOCA DE JERICOACOARA">JIJOCA DE JERICOACOARA</option>
+                                  <option value="JUAZEIRO DO NORTE">JUAZEIRO DO NORTE</option>
+                                  <option value="JUCÁS">JUCÁS</option>
+                                  <option value="LAVRAS DA MANGABEIRA">LAVRAS DA MANGABEIRA</option>
+                                  <option value="LIMOEIRO DO NORTE">LIMOEIRO DO NORTE</option>
+                                  <option value="MADALENA">MADALENA</option>
+                                  <option value="MARACANAÚ">MARACANAÚ</option>
+                                  <option value="MARANGUAPE">MARANGUAPE</option>
+                                  <option value="MARCO">MARCO</option>
+                                  <option value="MASSAPÊ">MASSAPÊ</option>
+                                  <option value="MAURITI">MAURITI</option>
+                                  <option value="MERUOCA">MERUOCA</option>
+                                  <option value="MILAGRES">MILAGRES</option>
+                                  <option value="MISSÃO VELHA">MISSÃO VELHA</option>
+                                  <option value="MOMBAÇA">MOMBAÇA</option>
+                                  <option value="MONSENHOR TABOSA">MONSENHOR TABOSA</option>
+                                  <option value="MORADA NOVA">MORADA NOVA</option>
+                                  <option value="MORRINHOS">MORRINHOS</option>
+                                  <option value="MUCAMBO">MUCAMBO</option>
+                                  <option value="MULUNGU">MULUNGU</option>
+                                  <option value="NOVA OLINDA">NOVA OLINDA</option>
+                                  <option value="NOVA RUSSAS">NOVA RUSSAS</option>
+                                  <option value="NOVO ORIENTE">NOVO ORIENTE</option>
+                                  <option value="OCARA">OCARA</option>
+                                  <option value="ORÓS">ORÓS</option>
+                                  <option value="PACAJUS">PACAJUS</option>
+                                  <option value="PACATUBA">PACATUBA</option>
+                                  <option value="PACOTI">PACOTI</option>
+                                  <option value="PALMÁCIA">PALMÁCIA</option>
+                                  <option value="PARACURU">PARACURU</option>
+                                  <option value="PARAIPABA">PARAIPABA</option>
+                                  <option value="PARAMBU">PARAMBU</option>
+                                  <option value="PEDRA BRANCA">PEDRA BRANCA</option>
+                                  <option value="PENTECOSTE">PENTECOSTE</option>
+                                  <option value="PEREIRO">PEREIRO</option>
+                                  <option value="PINDORETAMA">PINDORETAMA</option>
+                                  <option value="PIQUET CARNEIRO">PIQUET CARNEIRO</option>
+                                  <option value="PORANGA">PORANGA</option>
+                                  <option value="PORTEIRAS">PORTEIRAS</option>
+                                  <option value="QUITERIANOPOLIS">QUITERIANOPOLIS</option>
+                                  <option value="QUIXADÁ">QUIXADÁ</option>
+                                  <option value="QUIXELÔ">QUIXELÔ</option>
+                                  <option value="QUIXERAMOBIM">QUIXERAMOBIM</option>
+                                  <option value="QUIXERÉ">QUIXERÉ</option>
+                                  <option value="REDENÇÃO">REDENÇÃO</option>
+                                  <option value="RERIUTABA">RERIUTABA</option>
+                                  <option value="RUSSAS">RUSSAS</option>
+                                  <option value="SABOEIRO">SABOEIRO</option>
+                                  <option value="SANTA QUITÉRIA">SANTA QUITÉRIA</option>
+                                  <option value="SANTANA DO ACARAÚ">SANTANA DO ACARAÚ</option>
+                                  <option value="SANTANA DO CARIRI">SANTANA DO CARIRI</option>
+                                  <option value="SÃO BENEDITO">SÃO BENEDITO</option>
+                                  <option value="SÃO GONÇALO DO AMARANTE">SÃO GONÇALO DO AMARANTE</option>
+                                  <option value="SÃO LUIS DO CURU">SÃO LUIS DO CURU</option>
+                                  <option value="SENADOR POMPEU">SENADOR POMPEU</option>
+                                  <option value="SOBRAL">SOBRAL</option>
+                                  <option value="SOLONÓPOLE">SOLONÓPOLE</option>
+                                  <option value="TABULEIRO DO NORTE">TABULEIRO DO NORTE</option>
+                                  <option value="TAMBORIL">TAMBORIL</option>
+                                  <option value="TAUÁ">TAUÁ</option>
+                                  <option value="TIANGUÁ">TIANGUÁ</option>
+                                  <option value="TRAIRI">TRAIRI</option>
+                                  <option value="UBAJARA">UBAJARA</option>
+                                  <option value="UMIRIM">UMIRIM</option>
+                                  <option value="URUBURETAMA">URUBURETAMA</option>
+                                  <option value="URUOCA">URUOCA</option>
+                                  <option value="VARJOTA">VARJOTA</option>
+                                  <option value="VÁRZEA ALEGRE">VÁRZEA ALEGRE</option>
+                                  <option value="VIÇOSA DO CEARÁ">VIÇOSA DO CEARÁ</option>
+                                  <option value="VINCULADA DE ABAIARA">VINCULADA DE ABAIARA</option>
+                                  <option value="VINCULADA DE ACARAPE">VINCULADA DE ACARAPE</option>
+                                  <option value="VINCULADA DE ALCANTARAS">VINCULADA DE ALCANTARAS</option>
+                                  <option value="VINCULADA DE ALTANEIRA">VINCULADA DE ALTANEIRA</option>
+                                  <option value="VINCULADA DE ANTONINA DO NORTE">VINCULADA DE ANTONINA DO NORTE</option>
+                                  <option value="VINCULADA DE APUIARÉS">VINCULADA DE APUIARÉS</option>
+                                  <option value="VINCULADA DE ARNEIROZ">VINCULADA DE ARNEIROZ</option>
+                                  <option value="VINCULADA DE BANABUIU">VINCULADA DE BANABUIU</option>
+                                  <option value="VINCULADA DE BARREIRA">VINCULADA DE BARREIRA</option>
+                                  <option value="VINCULADA DE CATUNDA">VINCULADA DE CATUNDA</option>
+                                  <option value="VINCULADA DE CHORO LIMAO">VINCULADA DE CHORO LIMAO</option>
+                                  <option value="VINCULADA DE DEPUTADO IRAPUAN PINHEIRO">VINCULADA DE DEPUTADO IRAPUAN PINHEIRO</option>
+                                  <option value="VINCULADA DE ERERE">VINCULADA DE ERERE</option>
+                                  <option value="VINCULADA DE GENERAL SAMPAIO">VINCULADA DE GENERAL SAMPAIO</option>
+                                  <option value="VINCULADA DE GRANJEIRO">VINCULADA DE GRANJEIRO</option>
+                                  <option value="VINCULADA DE GUARAMIRANGA">VINCULADA DE GUARAMIRANGA</option>
+                                  <option value="VINCULADA DE IBARETAMA">VINCULADA DE IBARETAMA</option>
+                                  <option value="VINCULADA DE ITAIÇABA">VINCULADA DE ITAIÇABA</option>
+                                  <option value="VINCULADA DE JAGUARIBARA">VINCULADA DE JAGUARIBARA</option>
+                                  <option value="VINCULADA DE JIJOCA DE JERICOACOARA">VINCULADA DE JIJOCA DE JERICOACOARA</option>
+                                  <option value="VINCULADA DE MARTINOPOLE">VINCULADA DE MARTINOPOLE</option>
+                                  <option value="VINCULADA DE MILHA">VINCULADA DE MILHA</option>
+                                  <option value="VINCULADA DE MIRAIMA">VINCULADA DE MIRAIMA</option>
+                                  <option value="VINCULADA DE MORAUJO">VINCULADA DE MORAUJO</option>
+                                  <option value="VINCULADA DE NOVA OLINDA">VINCULADA DE NOVA OLINDA</option>
+                                  <option value="VINCULADA DE OCARA">VINCULADA DE OCARA</option>
+                                  <option value="VINCULADA DE PACUJA">VINCULADA DE PACUJA</option>
+                                  <option value="VINCULADA DE PALHANO">VINCULADA DE PALHANO</option>
+                                  <option value="VINCULADA DE PARAMOTI">VINCULADA DE PARAMOTI</option>
+                                  <option value="VINCULADA DE PENAFORTE">VINCULADA DE PENAFORTE</option>
+                                  <option value="VINCULADA DE PIQUET CARNEIRO">VINCULADA DE PIQUET CARNEIRO</option>
+                                  <option value="VINCULADA DE PIRES FERREIRA">VINCULADA DE PIRES FERREIRA</option>
+                                  <option value="VINCULADA DE POTENGI">VINCULADA DE POTENGI</option>
+                                  <option value="VINCULADA DE POTIRETAMA">VINCULADA DE POTIRETAMA</option>
+                                  <option value="VINCULADA DE QUITERIANOPOLIS">VINCULADA DE QUITERIANOPOLIS</option>
+                                  <option value="VINCULADA DE SALITRE">VINCULADA DE SALITRE</option>
+                                  <option value="VINCULADA DE SAO JOAO DO JAGUARIBE">VINCULADA DE SAO JOAO DO JAGUARIBE</option>
+                                  <option value="VINCULADA DE SENADOR SA">VINCULADA DE SENADOR SA</option>
+                                  <option value="VINCULADA DE TARRAFAS">VINCULADA DE TARRAFAS</option>
+                                  <option value="VINCULADA DE TEJUÇUOCA">VINCULADA DE TEJUÇUOCA</option>
+                                  <option value="VINCULADA DE TURURU">VINCULADA DE TURURU</option>
+                                  <option value="VINCULADA DE UMARI">VINCULADA DE UMARI</option>
+                                  <option value="VINCULADA DE VARJOTA">VINCULADA DE VARJOTA</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <!-- <div class="conjOpcoes">
+                              <h6 style="display: flex;">Certidão 2° Grau</h4>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjce" select="0" type="checkbox" value="criminal2" id="tjceCriminal2" name="tjce">
+                                <label class="form-check-label itemOpcao" for="tjceCriminal2">
+                                  Ação Criminal
+                                </label>
+                              </div>
+                              <div class="form-check opcoesBuscas">
+                                <input class="form-check-input box boxtjce" select="0" type="checkbox" value="civel2" id="tjceCivel2" name="tjce">
+                                <label class="form-check-label itemOpcao" for="tjceCivel2">
+                                  Ação Cível
+                                </label>
+                              </div>
+                            </div> -->
+
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjce" rota="/pesquisa/tjce" comarca="comarcaTjce" link="linktjce" link2="linktjce2" opcoes="boxtjce" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjce" value="https://sirece.tjce.jus.br/sirece-web/nova/solicitacao.jsf">
+                            <input type="hidden" id="linktjce2">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjce"></table></td>                                                      
+                        </tr> 
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJES -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjes" class="btn btn-outline-secondary btnList" type="button" id="bttjes">TJ ESPÍRITO SANTO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjes">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ ES</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjes" select="0" type="checkbox" value="criminal1" id="tjesCriminal" name="tjes">
+                              <label class="form-check-label itemOpcao" for="tjesCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjes" select="0" type="checkbox" value="civel1" id="tjesCivel" name="tjes">
+                              <label class="form-check-label itemOpcao" for="tjesCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjes" rota="/pesquisa/tjes" comarca="comarcaTjes" link="linktjes" link2="linktjes2" opcoes="boxtjes" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjes" value="https://sistemas.tjes.jus.br/certidaonegativa/sistemas/certidao/CERTIDAOPESQUISA.cfm">
+                            <input type="hidden" id="linktjes2">
+                            <input type="hidden" id="comarcaTjes">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjes"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJGO -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjgo" class="btn btn-outline-secondary btnList" type="button" id="bttjgo">TJ GOIÁS</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjgo">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ GO</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjgo" select="0" type="checkbox" value="criminal1" id="tjgoCriminal" name="tjgo">
+                              <label class="form-check-label itemOpcao" for="tjgoCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjgo" select="0" type="checkbox" value="civel1" id="tjgoCivel" name="tjgo">
+                              <label class="form-check-label itemOpcao" for="tjgoCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjgo" rota="/pesquisa/tjgo" comarca="comarcaTjgo" link="linktjgo" link2="linktjgo2" opcoes="boxtjgo" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjgo" value="https://www.tjgo.jus.br/index.php/processos/emissao-de-certidoes">
+                            <input type="hidden" id="linktjgo2">
+                            <input type="hidden" id="comarcaTjgo">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjgo"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJRR -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjrr" class="btn btn-outline-secondary btnList" type="button" id="bttjrr">TJ RORAIMA</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjrr">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ RR</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrr" select="0" type="checkbox" value="criminal1" id="tjrrCriminal" name="tjrr">
+                              <label class="form-check-label itemOpcao" for="tjrrCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrr" select="0" type="checkbox" value="civel1" id="tjrrCivel" name="tjrr">
+                              <label class="form-check-label itemOpcao" for="tjrrCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjrr" rota="/pesquisa/tjrr" comarca="comarcaTjrr" link="linktjrr" link2="linktjrr2" opcoes="boxtjrr" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjrr" value="http://www.tjrr.jus.br/index.php/servicos/certidao-negativa">
+                            <input type="hidden" id="linktjrr2">
+                            <input type="hidden" id="comarcaTjrr">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjrr"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJTO -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjto" class="btn btn-outline-secondary btnList" type="button" id="bttjto">TJ TOCANTINS</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjto">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ TO</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjto" select="0" type="checkbox" value="criminal1" id="tjtoCriminal" name="tjto">
+                              <label class="form-check-label itemOpcao" for="tjtoCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjto" select="0" type="checkbox" value="civel1" id="tjtorCivel" name="tjto">
+                              <label class="form-check-label itemOpcao" for="tjtoCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjto" rota="/pesquisa/tjto" comarca="comarcaTjto" link="linktjto" link2="linktjto2" opcoes="boxtjto" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjto" value=" http://www.tjto.jus.br/index.php/certidoes-3">
+                            <input type="hidden" id="linktjto2">
+                            <input type="hidden" id="comarcaTjto">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjto"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJRO -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjro" class="btn btn-outline-secondary btnList" type="button" id="bttjro">TJ RONDÔNIA</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjro">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ RO</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjro" select="0" type="checkbox" value="criminal1" id="tjroCriminal" name="tjro">
+                              <label class="form-check-label itemOpcao" for="tjroCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjro" select="0" type="checkbox" value="civel1" id="tjrorCivel" name="tjro">
+                              <label class="form-check-label itemOpcao" for="tjroCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjro" rota="/pesquisa/tjro" comarca="comarcaTjro" link="linktjro" link2="linktjro2" opcoes="boxtjro" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjro" value=" https://www.tjro.jus.br/certidao-unificada/certidaoPublicaEmitir">
+                            <input type="hidden" id="linktjro2">
+                            <input type="hidden" id="comarcaTjro">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjro"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJAM -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjam" class="btn btn-outline-secondary btnList" type="button" id="bttjam">TJ AMAZONAS</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjam">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ AM</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjam" select="0" type="checkbox" value="criminal" id="tjamCriminal" name="tjam">
+                              <label class="form-check-label itemOpcao" for="tjamCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjam" select="0" type="checkbox" value="civel" id="tjamCivel" name="tjam">
+                              <label class="form-check-label itemOpcao" for="tjamCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjam" rota="/pesquisa/tjam" comarca="comarcaTjam" link="linktjam" link2="linktjam2" opcoes="boxtjam" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjam" value="https://consultasaj.tjam.jus.br/esaj/portal.do?servico=810000">
+                            <input type="hidden" id="linktjam2">
+                            <input type="hidden" id="comarcaTjam">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjam"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJAC -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjac" class="btn btn-outline-secondary btnList" type="button" id="bttjac">TJ ACRE</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjac">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ AC</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjac" select="0" type="checkbox" value="criminal" id="tjacCriminal" name="tjac">
+                              <label class="form-check-label itemOpcao" for="tjacCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjac" select="0" type="checkbox" value="civel" id="tjacCivel" name="tjac">
+                              <label class="form-check-label itemOpcao" for="tjacCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjac" rota="/pesquisa/tjac" comarca="comarcaTjac" link="linktjac" link2="linktjac2" opcoes="boxtjac" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjac" value="https://esaj.tjac.jus.br/esaj/portal.do?servico=810000">
+                            <input type="hidden" id="linktjac2">
+                            <input type="hidden" id="comarcaTjac">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjac"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJMT -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjmt" class="btn btn-outline-secondary btnList" type="button" id="bttjmt">TJ MATO GROSSO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjmt">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ MT</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjmt" select="0" type="checkbox" value="criminal" id="tjmtCriminal" name="tjmt">
+                              <label class="form-check-label itemOpcao" for="tjmtCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjmt" select="0" type="checkbox" value="civel" id="tjmtCivel" name="tjmt">
+                              <label class="form-check-label itemOpcao" for="tjmtCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjmt" rota="/pesquisa/tjmt" comarca="comarcaTjmt" link="linktjmt" link2="linktjmt" opcoes="boxtjmt" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjmt" value="http://sec.tjmt.jus.br/">
+                            <input type="hidden" id="linktjmt2">
+                            <input type="hidden" id="comarcaTjmt">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjmt"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJPE -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjpe" class="btn btn-outline-secondary btnList" type="button" id="bttjpe">TJ PERNAMBUCO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjpe">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ PE</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpe" select="0" type="checkbox" value="criminal" id="tjpeCriminal" name="tjpe">
+                              <label class="form-check-label itemOpcao" for="tjpeCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpe" select="0" type="checkbox" value="civel" id="tjpeCivel" name="tjpe">
+                              <label class="form-check-label itemOpcao" for="tjpeCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjpe" rota="/pesquisa/tjpe" comarca="comarcaTjpe" link="linktjpe" link2="linktjpe" opcoes="boxtjpe" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjpe" value="https://www.tjpe.jus.br/web/processo-judicial-eletronico/pje-em-pernambuco/certidao">
+                            <input type="hidden" id="linktjpe2">
+                            <input type="hidden" id="comarcaTjpe">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjpe"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJMA -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjma" class="btn btn-outline-secondary btnList" type="button" id="bttjma">TJ MARANHÃO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjma">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ MA</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjma" select="0" type="checkbox" value="criminal" id="tjmaCriminal" name="tjma">
+                              <label class="form-check-label itemOpcao" for="tjmaCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjma" select="0" type="checkbox" value="civel" id="tjmaCivel" name="tjma">
+                              <label class="form-check-label itemOpcao" for="tjmaCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjma" rota="/pesquisa/tjma" comarca="comarcaTjma" link="linktjma" link2="linktjma" opcoes="boxtjma" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjma" value="http://jurisconsult.tjma.jus.br/#/certidao-state-certificate-sheet">
+                            <input type="hidden" id="linktjma2">
+                            <input type="hidden" id="comarcaTjma">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjma"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJSE -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjse" class="btn btn-outline-secondary btnList" type="button" id="bttjse">TJ SERGIPE</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjse">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ SE</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjse" select="0" type="checkbox" value="criminal" id="tjseCriminal" name="tjse">
+                              <label class="form-check-label itemOpcao" for="tjseCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjse" select="0" type="checkbox" value="civel" id="tjseCivel" name="tjse">
+                              <label class="form-check-label itemOpcao" for="tjseCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjse" rota="/pesquisa/tjse" comarca="comarcaTjse" link="linktjse" link2="linktjse" opcoes="boxtjse" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjse" value="https://www.tjse.jus.br/portal/servicos/judiciais/certidao-online/solicitacao-de-certidao-negativa">
+                            <input type="hidden" id="linktjse2">
+                            <input type="hidden" id="comarcaTjse">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjse"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJRN -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjrn" class="btn btn-outline-secondary btnList" type="button" id="bttjrn">TJ RIO GRANDE DO NORTE</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjrn">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ RN</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrn" select="0" type="checkbox" value="criminal" id="tjrnCriminal" name="tjrn">
+                              <label class="form-check-label itemOpcao" for="tjrnCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjrn" select="0" type="checkbox" value="civel" id="tjrnCivel" name="tjrn">
+                              <label class="form-check-label itemOpcao" for="tjrnCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjrn" rota="/pesquisa/tjrn" comarca="comarcaTjrn" link="linktjrn" link2="linktjrn" opcoes="boxtjrn" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjrn" value="https://apps.tjrn.jus.br/certidoes/f/public/index.xhtml">
+                            <input type="hidden" id="linktjrn2">
+                            <input type="hidden" id="comarcaTjrn">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjrn"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJPB -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjpb" class="btn btn-outline-secondary btnList" type="button" id="bttjpb">TJ PARAÍBA</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjpb">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ PB</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpb" select="0" type="checkbox" value="criminal" id="tjpbCriminal" name="tjpb">
+                              <label class="form-check-label itemOpcao" for="tjpbCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpb" select="0" type="checkbox" value="civel" id="tjpbCivel" name="tjpb">
+                              <label class="form-check-label itemOpcao" for="tjpbCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjpb" rota="/pesquisa/tjpb" comarca="comarcaTjpb" link="linktjpb" link2="linktjpb" opcoes="boxtjpb" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjpb" value="https://app.tjpb.jus.br/certo/paginas/publico/solicitarCertidao.jsf">
+                            <input type="hidden" id="linktjpb2">
+                            <input type="hidden" id="comarcaTjpb">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjpb"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- TJPA -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestjpa" class="btn btn-outline-secondary btnList" type="button" id="bttjpa">TJ PARÁ</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestjpa">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TJ PA</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpa" select="0" type="checkbox" value="criminal" id="tjpaCriminal" name="tjpa">
+                              <label class="form-check-label itemOpcao" for="tjpaCriminal">
+                                Certidão Criminal 1º Grau
+                              </label>
+                            </div>
+                            <!-- <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtjpa" select="0" type="checkbox" value="civel" id="tjpaCivel" name="tjpa">
+                              <label class="form-check-label itemOpcao" for="tjpaCivel">
+                                Certidão Cível 1º Grau
+                              </label>
+                            </div> -->
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtjpa" rota="/pesquisa/tjpa" comarca="comarcaTjpa" link="linktjpa" link2="linktjpa" opcoes="boxtjpa" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktjpa" value="https://consultas.tjpa.jus.br/certidao/pages/pesquisaGeralCentralCertidao.action">
+                            <input type="hidden" id="linktjpa2">
+                            <input type="hidden" id="comarcaTjpa">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtjpa"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- ANTECEDENTES DA PF -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoesacpf" class="btn btn-outline-secondary btnList" type="button" id="btacpf">ANTECEDENTES CRIMINAIS DA POLÍCIA FEDERAL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoesacpf">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>AC PF</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxacpf" select="0" type="checkbox" value="criminal" id="acpfCriminal" name="acpf">
+                              <label class="form-check-label itemOpcao" for="acpfCriminal">
+                                Antecedentes Criminais
+                              </label>
+                            </div>                            
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormacpf" rota="/pesquisa/acpf" comarca="comarcaAcpf" link="linkacpf" link2="linkacpf" opcoes="boxacpf" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkacpf" value="https://servicos.dpf.gov.br/antecedentes-criminais/certidao">
+                            <input type="hidden" id="linkacpf2">
+                            <input type="hidden" id="comarcaAcpf">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxacpf"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- CERTIDOES TSE -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestse" class="btn btn-outline-secondary btnList" type="button" id="bttse">TRIBUNAL SUPERIOR ELEITORAL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestse">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TSE</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtse" select="0" type="checkbox" value="situacao" id="tseSituacao" name="tse">
+                              <label class="form-check-label itemOpcao" for="tseSituacao">
+                                Situação Eleitoral
+                              </label>
+                            </div>
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtse" select="0" type="checkbox" value="FiliacaoSimples" id="tseFiliacaoSimples" name="tse">
+                              <label class="form-check-label itemOpcao" for="tseFiliacaoSimples">
+                                Certidão de Filiação Partidária Simples
+                              </label>
+                            </div>
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtse" select="0" type="checkbox" value="FiliacaoHistorico" id="tseFiliacaoHistorico" name="tse">
+                              <label class="form-check-label itemOpcao" for="tseFiliacaoHistorico">
+                                Certidão de Filiação Partidária Histórico
+                              </label>
+                            </div>
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtse" select="0" type="checkbox" value="crimesEleitorais" id="tsecrimesEleitorais" name="tse">
+                              <label class="form-check-label itemOpcao" for="tsecrimesEleitorais">
+                                Certidão de Crimes Eleitorais
+                              </label>
+                            </div>                              
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtse" rota="/pesquisa/ctse" comarca="comarcatse" link="linktse" link2="linktse" opcoes="boxtse" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktse" value="https://www.tse.jus.br/">
+                            <input type="hidden" id="linktse2">
+                            <input type="hidden" id="comarcatse">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtse"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- CERTIDOES TCU -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoestcu" class="btn btn-outline-secondary btnList" type="button" id="bttcu">TRIBUNAL DE CONTAS DA UNIÃO</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoestcu">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>TCU</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtcu" select="0" type="checkbox" value="irregulares" id="tcuIrregulares" name="tcu">
+                              <label class="form-check-label itemOpcao" for="tcuIrregulares">
+                                 Certidão de Contas Irregulares
+                              </label>
+                            </div>                            
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtcu" select="0" type="checkbox" value="processos" id="tcuProcessos" name="tcu">
+                              <label class="form-check-label itemOpcao" for="tcuProcessos">
+                                Certidão Negativa Processos
+                              </label>
+                            </div>
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxtcu" select="0" type="checkbox" value="inabilitados" id="tcuInabilitados" name="tcu">
+                              <label class="form-check-label itemOpcao" for="tcuInabilitados">
+                                Certidão Negativa Inabilitados
+                              </label>
+                            </div>                                                          
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormtcu" rota="/pesquisa/ctcu" comarca="comarcatcu" link="linktcu" link2="linktcu" opcoes="boxtcu" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linktcu" value="https://portal.tcu.gov.br/carta-de-servicos/">
+                            <input type="hidden" id="linktcu2">
+                            <input type="hidden" id="comarcatcu">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxtcu"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- RECEITA FEDERAL -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoescrf" class="btn btn-outline-secondary btnList" type="button" id="btcrf">CERTIDÃO RECEITA FEDERAL</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoescrf">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>C RF</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxcrf" select="0" type="checkbox" value="certidaoRF" id="certidaoRF" name="crf">
+                              <label class="form-check-label itemOpcao" for="certidaoRF">
+                                Certidão Negativa de Débitos
+                              </label>
+                            </div>                            
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormcrf" rota="/pesquisa/crf" comarca="comarcacrf" link="linkcrf" link2="linkcrf" opcoes="boxcrf" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkcrf" value="https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PF/Emitir">
+                            <input type="hidden" id="linkcrf2">
+                            <input type="hidden" id="comarcacrf">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxcrf"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+
+                <!-- CERTIDÃO STM -->
+                <tr class="listaOrgao">
+                  <th scope="row">
+                    <div class="input-group mb-3">
+                      <button name="opcoesstm" class="btn btn-outline-secondary btnList" type="button" id="btstm">CERTIDÃO SUPERIOR TRIBUNAL MILITAR</button>                      
+                    </div>
+                  </th>                  
+                </tr>
+                <tr class="opcaoOculta" visibilidade="nao" id="opcoesstm">                  
+                  <td>
+                    <table class="table">                      
+                      <tbody>
+                        <tr>                        
+                          <td>
+                            <p style="margin: 2px; width: 50px;"><strong>STM</strong></p>
+                          </td>                          
+                          <td class="linhaDeOpcoes">
+                            <div class="form-check opcoesBuscas">
+                              <input class="form-check-input box boxstm" select="0" type="checkbox" value="certidaostm" id="certidaostm" name="stm">
+                              <label class="form-check-label itemOpcao" for="certidaostm">
+                                Certidão Superior Tribunal Militar
+                              </label>
+                            </div>                            
+                          </td>
+                          <td class="conjBtoes" scope="row">
+                            <button id="btFormstm" rota="/pesquisa/stm" comarca="comarcastm" link="linkstm" link2="linkstm" opcoes="boxstm" class="w-40 btn btn-primary btn-sm btOrgao" type="submit">Buscar</button>
+                            <input type="hidden" id="linkstm" value="https://www.stm.jus.br/servicos-stm/certidao-negativa/emitir-certidao-negativa">
+                            <input type="hidden" id="linkstm2">
+                            <input type="hidden" id="comarcastm">
+                          </td>
+                          <td style="padding: 0; width: 2px;"><button type="button" class="btn-close fechar" style="height: 2px;" aria-label="Close"></button></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><table style="width: 100%;" id="boxstm"></table></td>                                                      
+                        </tr>                         
+                      </tbody>
+                    </table>
+                  </td>                  
+                </tr>
+              
+              </tbody>
+            </table>
+            <div>
+              <button id="btProcessar" type="submit" class="w-25 btn btn-primary btn-lg" style="background-color: #060761; display: none;">Buscar Todas</button>                
+              <button id="btLimpar" class="w-25 btn btn-primary btn-lg" style="background-color: #060761;">Limpar</button>                
+            </div>
+          </div>                                       
+        </div>
+      </form>
+    </section>    
+  </main>  
+</div>
+  
+
+<%- include('includes/footer') %>

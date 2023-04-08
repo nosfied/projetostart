@@ -1,0 +1,36 @@
+<section>
+  <%- include('includes/head') %>
+    <%- include('includes/nav') %>
+</section>
+   
+<section>
+  <form action="/login/login" method="POST">
+    
+    <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+    <div class="form-floating">
+      <img class="centralizado" src="/imagens/brasao.jpg" alt="" width="200">
+      <h1>START</h1>
+    </div>
+    
+    <div class="form-floating">
+      <input type="text" name="email" class="form-control" id="floatingInput">
+      <label for="floatingInput">Matrícula</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" name="senha" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="form-floating">
+      <button type="submit" class="w-30 btn btn-lg btn-primary centralizado" style="background-color: #060761;">Enter</button>
+    </div>
+    
+  </form>
+  <div class="form-floating">
+    <%- include('includes/messages'); %>  
+  </div>
+</section>
+  
+
+<%- include('includes/footer') %>

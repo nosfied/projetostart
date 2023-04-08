@@ -1,0 +1,18 @@
+<nav class="navbar">
+
+  <a class="navbar-brand" style="margin-left: 30px; display:inline-block" href="/login/index"><img
+      src="/imagens/logoprf.png" width="80"></a>
+  
+  <a style="text-decoration: none;" href="/login/index"><h2 style="color: rgb(255, 255, 255); font-style: italic;">START</h2></a>    
+
+  <div class="menu">
+    <ul class="navbar-nav">
+      <% if(user){ %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login/logout">Logout</a>
+        </li>
+        <% } %>
+    </ul>
+  </div>
+
+</nav>

@@ -1,0 +1,181 @@
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav-link {
+        color: rgb(251, 251, 251);
+      }
+
+      .nav-link:hover {        
+        color: rgba(239, 244, 244, 0.884);
+      }
+
+      .form-floating{
+        width: 25%;
+        margin-inline: auto;
+        margin-top: 4px;
+        text-align: center;
+      }
+      
+      .centralizado {
+        display: block;
+        margin: auto;        
+      }
+
+      .navbar {
+
+        background-color: #060761; 
+        display: inline-flexbox; 
+        padding-right: 10px;
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+      }
+
+      .menu {
+        position: relative;
+        display: inline-block;
+        margin-left: auto;
+      }
+
+      .container{
+        display: block;
+        width: 50%;
+      }
+
+      .secao{
+        background-color: rgb(247, 247, 240);
+        padding: 20px;
+        border-radius: 2%;
+      }
+
+      .opcoesBuscas{
+        display: flex;
+        align-content: left;
+      }
+
+      .itemOpcao{
+        margin-left: 5px;
+      }
+
+      .table{
+        background-color: rgb(243, 245, 248);
+      }
+
+      .btnList{
+        display: inline-block;
+        width: 100%;                        
+      }
+
+      .opcaoOculta{
+        display: none;
+      }
+
+      .msgErro{
+        color: red;
+      }
+
+      .msgSucesso{
+        color: rgb(116, 203, 28);
+      }
+
+      .btn-lg{
+        margin: 5px;
+      }
+
+      .btOrgao{
+        margin: 2px;
+        background-color: #4f51d1;
+        width: 55px;
+      }
+      
+      .linhaDeOpcoes{
+        width: 95%; 
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px 8px;
+        margin-top: 14px;
+        
+      }
+
+      .conjBtoes{
+        width: 50px;
+      }
+
+      .form-label{
+        position: absolute;
+        left: 10px;
+        top: -25px;
+      }
+
+      .divCampos{
+        position: relative;
+        margin-top: 30px;
+      }
+
+      .conjuntoForm1{
+        margin-right: -10px;
+        width: 90px;
+      }
+
+      .conjuntoForm2{
+        margin-left: -3%;
+        margin-right: -4%;
+      }
+
+      .conjuntoForm3{
+        width: fit-content;
+      }
+
+
+
+      
+    
